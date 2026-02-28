@@ -1,12 +1,12 @@
 {
   "evidences": [
     "EMF5",
-    "SpiritBox",
+    "DOTSProjector",
     "Ultraviolet",
+    "FreezingTemps",
     "GhostOrb",
     "GhostWriting",
-    "FreezingTemps",
-    "DOTSProjector"
+    "SpiritBox"
   ],
   "ghosts": [
     {
