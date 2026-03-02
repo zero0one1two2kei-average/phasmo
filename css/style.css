@@ -1,7 +1,10 @@
+/* 全体のベーススタイル */
 body {
   font-size: 18px;
   background-color: #1e2a2a;
+  /* 暗い緑系の背景色 */
   color: #d4e6e1;
+  /* 明るいテキスト色 */
   margin: 0;
   padding: 16px;
 }
@@ -10,6 +13,7 @@ h1 {
   margin-bottom: 16px;
 }
 
+/* 難易度セクション: 横並びレイアウト */
 #difficulty-section {
   display: flex;
   align-items: center;
@@ -17,34 +21,24 @@ h1 {
   margin-bottom: 16px;
 }
 
-/* 2カラムレイアウト */
+/* メインコンテンツ: 左右2カラムレイアウト */
 #main-content {
   display: flex;
   gap: 12px;
   align-items: flex-start;
 }
 
+/* 左カラム: 証拠選択エリア（幅固定） */
 #left-column {
   flex: 0 0 280px;
 }
 
+/* 右カラム: 候補ゴーストエリア（残りの幅を使用） */
 #right-column {
   flex: 1;
 }
 
-.evidence-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 8px;
-}
-
-.evidence-row span {
-  width: 180px;
-  word-break: keep-all;
-  white-space: nowrap;
-}
-
+/* 証拠1行分: 縦方向に並べる */
 .evidence-row {
   display: flex;
   flex-direction: column;
@@ -52,17 +46,27 @@ h1 {
   margin-bottom: 12px;
 }
 
+/* 証拠名: 折り返しを禁止 */
+.evidence-row span {
+  width: 180px;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+/* ラジオボタングループ: 横並び */
 .radio-group {
   display: flex;
   flex-direction: row;
   gap: 12px;
 }
 
+/* ラジオボタンのサイズ */
 input[type="radio"] {
   width: 18px;
   height: 18px;
 }
 
+/* リセットボタンのスタイル */
 #reset-button {
   font-size: 18px;
   padding: 8px 24px;
@@ -74,6 +78,7 @@ input[type="radio"] {
   margin-top: 12px;
 }
 
+/* 難易度セレクトボックスのスタイル */
 select {
   font-size: 18px;
   background-color: #2a3b3b;
@@ -83,6 +88,7 @@ select {
   padding: 4px 8px;
 }
 
+/* 候補ゴーストセクションの外枠 */
 #result-section {
   background-color: #2a3b3b;
   border: 1px solid #3d5555;
@@ -90,6 +96,7 @@ select {
   padding: 12px;
 }
 
+/* ゴーストカード: 各ゴーストの情報を囲む枠 */
 .ghost-card {
   background-color: #1e2a2a;
   border: 1px solid #3d5555;
@@ -98,6 +105,7 @@ select {
   margin-bottom: 12px;
 }
 
+/* "あり"にした証拠のハイライト表示 */
 .evidence-highlight {
   background-color: #5a8a5a;
   color: #ffffff;
@@ -105,6 +113,7 @@ select {
   border-radius: 4px;
 }
 
+/* 証拠セクションの外枠 */
 #evidence-section {
   background-color: #2a3b3b;
   border: 1px solid #3d5555;
@@ -113,7 +122,7 @@ select {
   margin-bottom: 12px;
 }
 
-/* スマホ対応 */
+/* スマホ対応: 画面幅768px以下で1カラムに切り替え */
 @media (max-width: 768px) {
   #main-content {
     flex-direction: column;

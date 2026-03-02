@@ -3,8 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
+  <!-- スマホでも正しく表示されるようにviewportを設定 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phasmo Helper</title>
+  <!-- スタイルシートの読み込み -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -12,6 +14,7 @@
 
   <h1>Phasmo Helper</h1>
 
+  <!-- 難易度選択セクション -->
   <section id="difficulty-section">
     <h2>難易度（証拠の数）</h2>
     <select id="difficulty-select">
@@ -21,27 +24,32 @@
     </select>
   </section>
 
+  <!-- メインコンテンツ: 左右2カラム -->
   <div id="main-content">
+
+    <!-- 左カラム: 証拠選択エリア -->
     <div id="left-column">
       <section id="evidence-section">
         <h2>証拠</h2>
-        <div id="evidence-list">
-          <!-- app.jsで動的に生成 -->
-        </div>
+        <!-- 証拠のラジオボタンはapp.jsで動的に生成 -->
+        <div id="evidence-list"></div>
       </section>
+      <!-- 全証拠を未選択に戻すボタン -->
       <button id="reset-button">リセット</button>
     </div>
 
+    <!-- 右カラム: 候補ゴースト表示エリア -->
     <div id="right-column">
       <section id="result-section">
         <h2>候補ゴースト</h2>
-        <div id="ghost-list">
-          <!-- app.jsで動的に生成 -->
-        </div>
+        <!-- 候補ゴーストのカードはapp.jsで動的に生成 -->
+        <div id="ghost-list"></div>
       </section>
     </div>
+
   </div>
 
+  <!-- JavaScriptの読み込み（bodyの末尾に置くことでHTML描画後に実行される） -->
   <script src="js/app.js"></script>
 </body>
 
