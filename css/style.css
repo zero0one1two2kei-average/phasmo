@@ -1,44 +1,102 @@
-/* 全体のベーススタイル */
+/* ========================================
+   ベーススタイル
+======================================== */
 body {
   font-size: 18px;
   background-color: #1e2a2a;
-  /* 暗い緑系の背景色 */
   color: #d4e6e1;
-  /* 明るいテキスト色 */
   margin: 0;
-  padding: 16px;
+  padding: 0;
 }
 
-h1 {
-  margin-bottom: 16px;
+/* ========================================
+   ヘッダー・ナビゲーション
+======================================== */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #162020;
+  border-bottom: 2px solid #3d5555;
+  padding: 12px 20px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-/* 難易度セクション: 横並びレイアウト */
+.site-header h1 {
+  margin: 0;
+  font-size: 1.4em;
+  color: #a8d8cc;
+  letter-spacing: 0.05em;
+}
+
+.site-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: 1px solid #3d5555;
+  color: #a8d8cc;
+  text-decoration: none;
+  font-size: 0.9em;
+  background-color: #2a3b3b;
+  transition: background-color 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #3d5555;
+}
+
+.nav-link.active {
+  background-color: #3d6e5e;
+  border-color: #5a9a80;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* ========================================
+   難易度セクション
+======================================== */
 #difficulty-section {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 16px;
+  margin: 16px 16px 0;
 }
 
-/* メインコンテンツ: 左右2カラムレイアウト */
+/* ========================================
+   メインコンテンツ（2カラム）
+======================================== */
 #main-content {
   display: flex;
   gap: 12px;
   align-items: flex-start;
+  padding: 16px;
 }
 
-/* 左カラム: 証拠選択エリア（幅固定） */
 #left-column {
   flex: 0 0 280px;
 }
 
-/* 右カラム: 候補ゴーストエリア（残りの幅を使用） */
 #right-column {
   flex: 1;
 }
 
-/* 証拠1行分: 縦方向に並べる */
+/* ========================================
+   証拠セクション
+======================================== */
+#evidence-section {
+  background-color: #2a3b3b;
+  border: 1px solid #3d5555;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
 .evidence-row {
   display: flex;
   flex-direction: column;
@@ -46,27 +104,26 @@ h1 {
   margin-bottom: 12px;
 }
 
-/* 証拠名: 折り返しを禁止 */
 .evidence-row span {
   width: 180px;
   word-break: keep-all;
   white-space: nowrap;
 }
 
-/* ラジオボタングループ: 横並び */
 .radio-group {
   display: flex;
   flex-direction: row;
   gap: 12px;
 }
 
-/* ラジオボタンのサイズ */
 input[type="radio"] {
   width: 18px;
   height: 18px;
 }
 
-/* リセットボタンのスタイル */
+/* ========================================
+   リセットボタン
+======================================== */
 #reset-button {
   font-size: 18px;
   padding: 8px 24px;
@@ -75,10 +132,17 @@ input[type="radio"] {
   color: #d4e6e1;
   border: 1px solid #3d5555;
   border-radius: 4px;
-  margin-top: 12px;
+  margin-top: 4px;
+  width: 100%;
 }
 
-/* 難易度セレクトボックスのスタイル */
+#reset-button:hover {
+  background-color: #3d5555;
+}
+
+/* ========================================
+   難易度セレクトボックス
+======================================== */
 select {
   font-size: 18px;
   background-color: #2a3b3b;
@@ -88,7 +152,9 @@ select {
   padding: 4px 8px;
 }
 
-/* 候補ゴーストセクションの外枠 */
+/* ========================================
+   候補ゴーストセクション
+======================================== */
 #result-section {
   background-color: #2a3b3b;
   border: 1px solid #3d5555;
@@ -96,7 +162,19 @@ select {
   padding: 12px;
 }
 
-/* ゴーストカード: 各ゴーストの情報を囲む枠 */
+#result-section h2 {
+  margin-top: 0;
+}
+
+#ghost-count {
+  font-size: 0.75em;
+  color: #8abfae;
+  font-weight: normal;
+}
+
+/* ========================================
+   ゴーストカード
+======================================== */
 .ghost-card {
   background-color: #1e2a2a;
   border: 1px solid #3d5555;
@@ -105,27 +183,235 @@ select {
   margin-bottom: 12px;
 }
 
-/* "あり"にした証拠のハイライト表示 */
+.ghost-card h3 {
+  margin: 0 0 6px 0;
+  color: #a8d8cc;
+  font-size: 1.1em;
+}
+
+.ghost-evidences {
+  margin: 0 0 8px 0;
+  font-size: 0.9em;
+  color: #b0cfc8;
+}
+
+/* ハイライト証拠 */
 .evidence-highlight {
-  background-color: #5a8a5a;
+  background-color: #3d6e5e;
   color: #ffffff;
   padding: 2px 6px;
   border-radius: 4px;
 }
 
-/* 証拠セクションの外枠 */
-#evidence-section {
+/* ========================================
+   メタバッジ（サニティ・速度）
+======================================== */
+.ghost-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.meta-badge {
+  display: inline-block;
+  font-size: 0.82em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: normal;
+  word-break: break-all;
+}
+
+.sanity-badge {
+  background-color: #2a3d50;
+  border: 1px solid #4a6e8a;
+  color: #9fcde0;
+}
+
+.speed-badge {
+  background-color: #2e3a2a;
+  border: 1px solid #5a7a4a;
+  color: #a8cc90;
+}
+
+/* ========================================
+   特徴リスト
+======================================== */
+.ghost-traits {
+  margin: 0 0 10px 0;
+  padding-left: 20px;
+  font-size: 0.92em;
+}
+
+.ghost-traits li {
+  margin-bottom: 4px;
+}
+
+/* ========================================
+   特定バッジ（【特定】行）
+======================================== */
+.trait-identify {
+  color: #f0d080;
+}
+
+.identify-badge {
+  display: inline-block;
+  font-size: 0.72em;
+  font-weight: bold;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background-color: #7a5a10;
+  color: #f5e090;
+  border: 1px solid #c09030;
+  margin-right: 5px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+
+/* ========================================
+   呪いのアイテム
+======================================== */
+.items-grid-single {
+  grid-template-columns: 1fr !important;
+}
+
+.cursed-category-header {
+  color: #e0a060;
+  border-bottom-color: #7a4a20;
+}
+
+.cursed-card {
+  border-color: #7a4a20;
+  background-color: #2a2010;
+}
+
+.cursed-card .item-name {
+  color: #f0c070;
+  border-bottom-color: #7a4a20;
+}
+
+.cursed-card .item-notes-section {
+  background-color: #1a1408;
+  border-left-color: #7a4a20;
+}
+
+.cursed-badge {
+  display: inline-block;
+  font-size: 0.65em;
+  font-weight: bold;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background-color: #8b2500;
+  color: #ffcc88;
+  border: 1px solid #cc5500;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* ========================================
+   アイテムページ
+======================================== */
+#items-page {
+  padding: 16px;
+}
+
+#items-page h2 {
+  margin-top: 0;
+}
+
+.page-description {
+  color: #8abfae;
+  font-size: 0.95em;
+  margin-bottom: 20px;
+}
+
+.category-header {
+  margin: 24px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3d5555;
+  color: #a8d8cc;
+  font-size: 1.05em;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.item-card {
   background-color: #2a3b3b;
   border: 1px solid #3d5555;
   border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
+  padding: 14px;
 }
 
-/* スマホ対応: 画面幅768px以下で1カラムに切り替え */
+.item-name {
+  margin: 0 0 10px 0;
+  font-size: 1.05em;
+  font-weight: bold;
+  color: #c8eee6;
+  border-bottom: 1px solid #3d5555;
+  padding-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.item-section {
+  margin-bottom: 10px;
+}
+
+.item-notes-section {
+  background-color: #1a2828;
+  border-left: 3px solid #3d5555;
+  padding: 6px 10px;
+  border-radius: 0 4px 4px 0;
+}
+
+.item-label {
+  font-size: 0.78em;
+  font-weight: bold;
+  color: #8abfae;
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.item-text {
+  font-size: 0.9em;
+  color: #c0dcd4;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.item-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.9em;
+  color: #c0dcd4;
+  line-height: 1.6;
+}
+
+.item-sublist {
+  margin: 2px 0 4px 0;
+  padding-left: 16px;
+  list-style-type: "- ";
+  color: #a0c4bc;
+  font-size: 0.95em;
+}
+
+/* ========================================
+   スマホ対応（768px以下）
+======================================== */
 @media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   #main-content {
     flex-direction: column;
+    padding: 12px;
   }
 
   #left-column {
@@ -139,5 +425,15 @@ select {
 
   .radio-group {
     gap: 8px;
+  }
+
+  .items-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .ghost-meta {
+    flex-direction: column;
+    gap: 4px;
   }
 }

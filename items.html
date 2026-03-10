@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アイテム一覧 - Phasmo Helper</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>Phasmo Helper</h1>
+    <nav class="site-nav">
+      <a href="index.html" class="nav-link">🔍 ゴースト判別</a>
+      <a href="items.html" class="nav-link active">🎒 アイテム一覧</a>
+    </nav>
+  </header>
+
+  <div id="items-page">
+    <h2>アイテム一覧</h2>
+    <div id="items-container"></div>
+  </div>
+
+  <script>
+    fetch("data/items.json")
+      .then(res => res.json())
+      .then(data => renderItems(data));
+
+    function renderItems(data) {
+      const container = document.getElementById("items-container");
+
+      data.categories.forEach(category => {
+        const catHeader = document.createElement("h3");
+        catHeader.className = "category-header" + (category.cursedCategory ? " cursed-category-header" : "");
+        catHeader.textContent = category.name;
+        container.appendChild(catHeader);
+
+        const grid = document.createElement("div");
+        grid.className = "items-grid" + (category.cursedCategory ? " items-grid-single" : "");
+
+        category.items.forEach(item => {
+          const card = document.createElement("div");
+          card.className = "item-card" + (item.cursed ? " cursed-card" : "");
+
+          // アイテム名
+          const name = document.createElement("h4");
+          name.className = "item-name";
+          if (item.cursed) {
+            const badge = document.createElement("span");
+            badge.className = "cursed-badge";
+            badge.textContent = "呪";
+            name.appendChild(badge);
+          }
+          name.appendChild(document.createTextNode(item.name));
+
+          card.appendChild(name);
+          card.appendChild(buildSection("使い方", item.usage));
+          card.appendChild(buildSection("注意・ポイント", item.notes, true));
+          grid.appendChild(card);
+        });
+
+        container.appendChild(grid);
+      });
+    }
+
+    // content: string | string[] | {text, sub[]}[]
+    function buildSection(label, content, isNotes = false) {
+      const section = document.createElement("div");
+      section.className = "item-section" + (isNotes ? " item-notes-section" : "");
+
+      const labelEl = document.createElement("p");
+      labelEl.className = "item-label";
+      labelEl.textContent = label;
+      section.appendChild(labelEl);
+
+      if (!Array.isArray(content)) {
+        // 単純な文字列
+        const p = document.createElement("p");
+        p.className = "item-text";
+        p.textContent = content;
+        section.appendChild(p);
+        return section;
+      }
+
+      const ul = document.createElement("ul");
+      ul.className = "item-list";
+
+      content.forEach(entry => {
+        if (typeof entry === "string") {
+          const li = document.createElement("li");
+          li.textContent = entry;
+          ul.appendChild(li);
+        } else {
+          // {text, sub[]} — 親テキスト＋サブリスト
+          const li = document.createElement("li");
+          if (entry.text) {
+            li.appendChild(document.createTextNode(entry.text));
+          }
+          if (entry.sub && entry.sub.length > 0) {
+            const subUl = document.createElement("ul");
+            subUl.className = "item-sublist";
+            entry.sub.forEach(s => {
+              const subLi = document.createElement("li");
+              subLi.textContent = s;
+              subUl.appendChild(subLi);
+            });
+            li.appendChild(subUl);
+          }
+          ul.appendChild(li);
+        }
+      });
+
+      section.appendChild(ul);
+      return section;
+    }
+  </script>
+</body>
+</html>
